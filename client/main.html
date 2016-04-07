@@ -1,0 +1,23 @@
+<head>
+  <title>minesweeper</title>
+</head>
+
+<body>
+  <center>
+    <h1>Welcome to Minesweeper!</h1>
+  </center>
+  {{> gameBoard}}
+
+</body>
+
+<template name="gameBoard">
+<center>
+  <select id="category-select">
+    <option disabled="disabled" selected="selected">Please Select Level</option>
+    {{#each categories}}
+        <option value="{{this}}">{{this}}</option>
+    {{/each}}
+</select>
+</center>
+  <div class="board" id="board"></div>
+</template>
