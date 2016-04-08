@@ -128,11 +128,9 @@ displayResult = function displayResult(checkedPlaces){
      $('table.grid tr:eq(' + checkedPlaces[i][1] + ') td:eq(' + checkedPlaces[i][0] + ')').addClass( "noBomb" );
     }
   }
-}
+};
 
 gameover = function gameover(){
   for(var i =0; i<placeBombs.length; i++)
       $('table.grid tr:eq(' + placeBombs[i][1] + ') td:eq(' + placeBombs[i][0] + ')').addClass( "bomb" ).text('X');
-      var r= $('<center><a href="">Refresh</a></center>');
-      $("body").append(r);
-}
+};

@@ -1,7 +1,8 @@
 import { Template } from 'meteor/templating';
+import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 
-Template.gameBoard.onRendered(function helloOnCreated() {
+Template.gameBoard.onRendered(function OnCreated() {
   rows = 10;
   cols = 10;
   lost = false;
@@ -22,9 +23,17 @@ Template.gameBoard.helpers({
 Template.gameBoard.events({
   "change #category-select": function (event) {
       var category = $(event.currentTarget).val();
+      lost = false;
+      clickedPlaces=[];
       createGrid(rows,cols);
       placeBombs=populateBombs(category);
       console.log(placeBombs.length);
+  },
+  "click .refresh": function(){
+    lost = false;
+    clickedPlaces=[];
+    createGrid(rows,cols);
+    placeBombs=populateBombs('easy');
   },
   'click td'(event){
   if(lost) return;
