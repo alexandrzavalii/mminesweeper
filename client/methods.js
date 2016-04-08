@@ -51,7 +51,7 @@ populateBombs = function(category){
                 yposition.push(y);
 
                 placeBombs[(placeBombs.length)] = [x,y];
-                console.log(placeBombs[i]);
+    
             }
         }
 

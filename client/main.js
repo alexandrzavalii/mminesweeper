@@ -25,12 +25,16 @@ Template.gameBoard.events({
       clickedPlaces=[];
       createGrid(rows,cols);
       placeBombs=populateBombs(category);
-      console.log(placeBombs.length);
+      
   },
   "click .refresh": function(){
+    $( ".header" ).text('Welcome to Minesweeper!').removeClass("winner");
     var category = $(event.currentTarget).val();
     if(category!='')
-    placeBombs=populateBombs(category);
+        placeBombs=populateBombs(category);
+    else {
+        placeBombs=populateBombs("easy");
+    }
     lost = false;
     clickedPlaces=[];
     createGrid(rows,cols);
@@ -61,7 +65,7 @@ Template.gameBoard.events({
         gameover();
          }
          if(clickedPlaces.length+placeBombs.length == 100){
-          $( ".header" ).text('Winner!!!').addClass("winner").fadeIn();
+          $( ".header" ).text('Winner!!!').addClass("winner");
           for(var i = 0; i<placeBombs.length; i++){
             $('table.grid tr:eq(' + placeBombs[i][1] + ') td:eq(' + placeBombs[i][0] + ')').addClass( "discovered" ).text('V');
 
