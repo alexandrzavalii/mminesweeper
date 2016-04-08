@@ -28,7 +28,7 @@ populateBombs = function(category){
     }else if(category==='hard'){
       bombs = 30;
     }else{
-      bombs = 10;
+      bombs = 5;
     }
 
     randomPosition(bombs);
@@ -51,7 +51,7 @@ populateBombs = function(category){
                 yposition.push(y);
 
                 placeBombs[(placeBombs.length)] = [x,y];
-
+                console.log(placeBombs[i]);
             }
         }
 
@@ -120,7 +120,6 @@ checkArround = function checkArround(i,x,y){
 };
 
 displayResult = function displayResult(checkedPlaces){
-  console.log("looops",checkedPlaces.length);
   for(var i=0; i<checkedPlaces.length; i++){
     if(checkedPlaces[i][2] > 0){
       $('table.grid tr:eq(' + checkedPlaces[i][1] + ') td:eq(' + checkedPlaces[i][0] + ')').addClass( "hasBomb" ).text(checkedPlaces[i][2]);

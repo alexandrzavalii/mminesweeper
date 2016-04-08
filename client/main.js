@@ -10,8 +10,6 @@ Template.gameBoard.onRendered(function OnCreated() {
   placeToCheck = [[-1,-1],[0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0]];
   createGrid(rows,cols);
   placeBombs=populateBombs('easy');
-  console.log(placeBombs.length);
-
 });
 
 Template.gameBoard.helpers({
@@ -30,12 +28,16 @@ Template.gameBoard.events({
       console.log(placeBombs.length);
   },
   "click .refresh": function(){
+    var category = $(event.currentTarget).val();
+    if(category!='')
+    placeBombs=populateBombs(category);
     lost = false;
     clickedPlaces=[];
     createGrid(rows,cols);
-    placeBombs=populateBombs('easy');
+
   },
   'click td'(event){
+
   if(lost) return;
 
   //check if the place has been clicked already
@@ -54,8 +56,16 @@ Template.gameBoard.events({
         clickedPlacesThisTurn=[];
         clickedPlacesThisTurn=clickNext(x,y);
         displayResult(clickedPlacesThisTurn);
+
       }else{
         gameover();
          }
+         if(clickedPlaces.length+placeBombs.length == 100){
+          $( ".header" ).text('Winner!!!').addClass("winner").fadeIn();
+          for(var i = 0; i<placeBombs.length; i++){
+            $('table.grid tr:eq(' + placeBombs[i][1] + ') td:eq(' + placeBombs[i][0] + ')').addClass( "discovered" ).text('V');
+
+          }
+        }
   }
 });

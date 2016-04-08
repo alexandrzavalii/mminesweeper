@@ -20,3 +20,10 @@
     background-color:grey;
     font-weight:bold;
 }
+.grid td.discovered {
+    background-color:green;
+    font-weight:bold;
+}
+.winner {
+  color:red;
+}
